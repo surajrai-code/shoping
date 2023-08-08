@@ -34,9 +34,23 @@ const Todos = () => {
   };
   const editItem = (index) => {
     if (!todo[index].isChecked) {
-      setTodo(todo[index].content);
+      setInputs(todo[index].content);
       setEditIndex(index);
     }
+  };
+  const deleteAll = () => {
+    setTodo([]);
+    setEditIndex(null);
+  };
+  const completeAll = () => {
+    const updateTodo = todo.map((item) => ({
+      ...item,
+      isChecked: true,
+    }));
+    setTodo(updateTodo);
+  };
+  const countcmplttask = () => {
+    return todo.filter((item) => item.isChecked).length;
   };
 
   const itemCount = todo.length;
@@ -53,11 +67,12 @@ const Todos = () => {
       <button type="submit" onClick={SubmitHandler}>
         {editIndex !== null ? "update" : "submit"}
       </button>
-
+      <button onClick={deleteAll}>Delete of task</button>
+      <button onClick={completeAll}>complete of task</button>
       <div>
         {todo.map((item, id) => (
           <div key={id}>
-          <input
+            <input
               type="checkbox"
               checked={item.isChecked}
               onChange={() => toggle(id)}
@@ -90,9 +105,9 @@ const Todos = () => {
             <button onClick={() => deleteHandler(id)}>delete</button>
           </div>
         ))}
-        
       </div>
       <p>Total item:{itemCount}</p>
+      <p>complete task:{countcmplttask()}</p>
     </>
   );
 };
