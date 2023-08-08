@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Todos = () => {
   const [inputs, setInputs] = useState();
   const [todo, setTodo] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
+  const navigate=useNavigate()
   const SubmitHandler = (e) => {
     e.preventDefault();
     if (editIndex !== null) {
@@ -52,7 +54,9 @@ const Todos = () => {
   const countcmplttask = () => {
     return todo.filter((item) => item.isChecked).length;
   };
-
+if(todo.length>=5){
+  navigate('/NextPage')
+}
   const itemCount = todo.length;
   return (
     <>

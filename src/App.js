@@ -1,11 +1,14 @@
 
+import { Routes,Route } from "react-router-dom";
 import Todos from "./Components/Todos";
+import NextPage from "./Components/NextPage";
 function App() {
 
   return (
-  <div className="main-div">
-   <Todos/>
-  </div>
+  <Routes>
+    <Route path="/" element={<Todos/>}/>
+    <Route path="/NextPage" element={<NextPage/>}/>
+  </Routes>
   );
 }
 
